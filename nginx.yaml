@@ -2,8 +2,10 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    run: nginx
-  name: nginx
+    run: nginx-yaml-run
+    myLabel: my-new-label
+    methon: from-yaml-file
+  name: nginx-yaml-name
 spec:
   containers:
   - image: nginx
