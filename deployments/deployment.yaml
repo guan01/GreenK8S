@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: robot
+  name: robot
+  namespace: robot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: robot
+  template:
+    metadata:
+      labels:
+        app: robot
+    spec:
+      containers:
+        - image: ghcr.io/mealie-recipes/mealie:v1.2.0
+          name: mealie
+          ports:
+            - containerPort: 9000
+
