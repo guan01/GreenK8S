@@ -2,22 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: robot
-  name: robot
-  namespace: robot
+    app: frontend
+  name: frontend
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
-      app: robot
+      app: frontend
   template:
     metadata:
       labels:
-        app: robot
+        app: frontend
     spec:
       containers:
-        - image: ghcr.io/mealie-recipes/mealie:v1.2.0
-          name: mealie
-          ports:
-            - containerPort: 9000
+        - image: httpd:alpine3.18
+          name: httpd
+  strategy:
+    type:  RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
 
